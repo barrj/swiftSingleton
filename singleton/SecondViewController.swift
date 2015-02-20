@@ -29,6 +29,7 @@ class SecondViewController: UIViewController {
         if (mySong.name != "none")
         {
             theNameField.text = mySong.name
+            
         }
     }
 
