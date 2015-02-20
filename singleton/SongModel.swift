@@ -3,6 +3,7 @@
 //  Songs
 //
 //  Created by Evan Sobkowicz on 2/1/15.
+//  Modifies by John Barr on 2/18/15
 //  Copyright (c) 2015 Evan Sobkowicz. All rights reserved.
 //
 
