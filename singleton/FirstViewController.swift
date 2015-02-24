@@ -14,19 +14,19 @@ class FirstViewController: UIViewController {
     
     
     var theSongModel: sharedSongModel = sharedSongModel.theSharedSongModel
-    var mySong:Song = Song()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mySong = theSongModel.theSong
     }
     
     // this works because we initialize mySong to an empty Song
     override func viewWillAppear(animated: Bool) {
-        if (mySong.name != "none")
-        {
-            songNameField.text = mySong.name
+        if (theSongModel.songList.count > 1){
+            let index = theSongModel.songList.count - 1
+            songNameField.text = theSongModel.songList[index].name
+        }
+        else{
+            songNameField.text = theSongModel.getFirstSongName()
         }
     }
 
@@ -45,7 +45,11 @@ class FirstViewController: UIViewController {
     }
 
     @IBAction func saveSongPressed(sender: UIButton) {
-        mySong.name = songNameField.text
+        
+        var tempSong : Song = Song()
+        tempSong.name = songNameField.text
+        
+        theSongModel.addSong(tempSong)
     }
 
 }

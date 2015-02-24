@@ -12,10 +12,20 @@ private let _songModelSharedInstance = sharedSongModel()
 
 class sharedSongModel {
     
-    let theSong: Song
+    var songList: [Song]
     
    init(){
-        theSong = Song()
+        songList = [Song]()
+    // start with an empty song in the list
+        songList.append(Song())
+    }
+    
+    func addSong(newSong:Song){
+        songList.append(newSong)
+    }
+    
+    func getFirstSongName()->NSString{
+        return songList[0].name
     }
     
     class var theSharedSongModel: sharedSongModel {

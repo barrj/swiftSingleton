@@ -13,23 +13,23 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var theNameField: UITextField!
     
     var theSongModel: sharedSongModel = sharedSongModel.theSharedSongModel
-    var mySong:Song = Song()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mySong = theSongModel.theSong
-        
-        theNameField.text = mySong.name
-        
     }
     
     // this works because we initialize mySong to an empty Song
     override func viewWillAppear(animated: Bool) {
-        if (mySong.name != "none")
-        {
-            theNameField.text = mySong.name
+        if (theSongModel.songList.count > 1){
+            let index = theSongModel.songList.count - 1
+            theNameField.text = theSongModel.songList[index].name
         }
+        else{
+            theNameField.text = theSongModel.getFirstSongName()
+        }
+        
+           // NSLog("Song list name: %@", mySongList[0].name)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +46,10 @@ class SecondViewController: UIViewController {
     }
     
     @IBAction func saveSongPressed(sender: UIButton) {
-        mySong.name = theNameField.text
+        var tempSong : Song = Song()
+        tempSong.name = theNameField.text
+        
+        theSongModel.addSong(tempSong)
     }
 
 
